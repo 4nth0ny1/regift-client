@@ -7,9 +7,11 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Link,
   withRouter,
 } from "react-router-dom";
 import About from "./components/About.js";
+import Profile from "./components/Profile.js";
 
 function App() {
   const [user, setUser] = useState({});
@@ -66,12 +68,17 @@ function App() {
       <Router>
         <Switch>
           <Route path="/about" exact component={() => <About />} />
+          <Route path="/profile" exact component={() => <Profile />}></Route>
         </Switch>
         <Header handleFormSwitch={handleFormSwitch} />
         {renderForm()}
-        <button onClick={handleAuthClick} className="ui button">
-          Access Authorized Route
-        </button>
+        {user && (
+          <Link to="/profile">
+            <button onClick={handleAuthClick} className="ui button">
+              Access Authorized Route
+            </button>
+          </Link>
+        )}
       </Router>
     </div>
   );
