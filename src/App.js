@@ -54,6 +54,12 @@ function App() {
 
   console.log(user);
 
+  const logOut = () => {
+    setUser({});
+    // this.setState({ user: {}, loggedIn: false });
+    localStorage.token = "";
+  };
+
   const renderForm = () => {
     switch (form) {
       case "login":
@@ -79,6 +85,10 @@ function App() {
             </button>
           </Link>
         )}
+        <span className="pretty-link">
+          <br />
+          <button onClick={logOut}>Log Out</button>
+        </span>
       </Router>
     </div>
   );
