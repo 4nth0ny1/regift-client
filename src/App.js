@@ -3,6 +3,13 @@ import "./App.css";
 import Header from "./components/Header";
 import SignInForm from "./components/SignInForm";
 import LoginForm from "./components/LoginForm";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter,
+} from "react-router-dom";
+import About from "./components/About.js";
 
 function App() {
   const [user, setUser] = useState({});
@@ -56,13 +63,18 @@ function App() {
   };
   return (
     <div className="App">
-      <Header handleFormSwitch={handleFormSwitch} />
-      {renderForm()}
-      <button onClick={handleAuthClick} className="ui button">
-        Access Authorized Route
-      </button>
+      <Router>
+        <Switch>
+          <Route path="/about" exact component={() => <About />} />
+        </Switch>
+        <Header handleFormSwitch={handleFormSwitch} />
+        {renderForm()}
+        <button onClick={handleAuthClick} className="ui button">
+          Access Authorized Route
+        </button>
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
