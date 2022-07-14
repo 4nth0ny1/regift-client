@@ -36,6 +36,7 @@ function App() {
 
   const handleLogin = (user) => {
     setUser(user);
+    setLoggedIn(true);
   };
 
   const handleFormSwitch = (input) => {
@@ -73,6 +74,7 @@ function App() {
   };
   return (
     <div className="App">
+      <h1>reGift</h1>
       <Router>
         <Switch>
           <Route path="/about" exact component={() => <About />} />
@@ -80,11 +82,18 @@ function App() {
           <Route
             path="/profile"
             exact
-            component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
+            component={() => <Profile logOut={logOut} />}
           ></Route>
         </Switch>
-        <Header handleFormSwitch={handleFormSwitch} />
-        {renderForm()}
+
+        {!loggedIn ? <Header handleFormSwitch={handleFormSwitch} /> : null}
+        <p>
+          {loggedIn
+            ? `Welcome ${user.username}`
+            : "login to visit the rest of the site"}
+        </p>
+        {!loggedIn ? renderForm() : null}
+
         <Link to="/">
           <span className="pretty-link">
             <br />

@@ -29,6 +29,7 @@ function LoginForm(props) {
       .then((data) => {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
+        props.setLoggedIn(true);
         if (data.user) {
           window.location.href = "/profile";
         }
