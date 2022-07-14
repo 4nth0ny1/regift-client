@@ -9,6 +9,7 @@ import {
   Switch,
   Link,
   withRouter,
+  Redirect,
 } from "react-router-dom";
 import About from "./components/About.js";
 import Profile from "./components/Profile.js";
@@ -29,7 +30,6 @@ function App() {
         .then((resp) => resp.json())
         .then((data) => {
           setUser(data);
-          // console.log(data)
         });
     }
   }, []);
@@ -58,7 +58,6 @@ function App() {
   const logOut = () => {
     setUser({});
     setLoggedIn(false);
-    // this.setState({ user: {}, loggedIn: false });
     localStorage.token = "";
     window.location.href = "/";
   };
@@ -77,11 +76,15 @@ function App() {
       <Router>
         <Switch>
           <Route path="/about" exact component={() => <About />} />
-          <Route
-            path="/profile"
-            exact
-            component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
-          ></Route>
+          {loggedIn ? (
+            <Route
+              path="/profile"
+              exact
+              component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
+            ></Route>
+          ) : (
+            <Redirect to="/" />
+          )}
         </Switch>
         <Header handleFormSwitch={handleFormSwitch} />
         {renderForm()}
