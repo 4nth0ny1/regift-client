@@ -1,9 +1,7 @@
 import React from "react";
 
 const headerStyle = {
-  background: "black",
-  height: "15vh",
-  // lineHeight: "15vh"
+  lineHeight: "15vh",
 };
 function Header(props) {
   return (

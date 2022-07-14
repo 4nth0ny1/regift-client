@@ -72,6 +72,15 @@ function App() {
         return <SignInForm handleLogin={handleLogin} />;
     }
   };
+
+  const formStyles = {
+    width: "500px",
+    boxShadow: "0px 0px 10px 0px grey",
+    borderRadius: "10px",
+    padding: "25px",
+    margin: "30px auto",
+  };
+
   return (
     <div className="App">
       <h1>reGift</h1>
@@ -86,13 +95,13 @@ function App() {
           ></Route>
         </Switch>
 
-        {!loggedIn ? <Header handleFormSwitch={handleFormSwitch} /> : null}
-        <p>
-          {loggedIn
-            ? `Welcome ${user.username}`
-            : "login to visit the rest of the site"}
-        </p>
-        {!loggedIn ? renderForm() : null}
+        <div style={formStyles}>
+          {!loggedIn ? <Header handleFormSwitch={handleFormSwitch} /> : null}
+          <p>
+            {loggedIn ? `Welcome ${user.username}` : "login to start regifting"}
+          </p>
+          {!loggedIn ? renderForm() : null}
+        </div>
 
         {loggedIn ? (
           <Link to="/">
