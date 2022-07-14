@@ -1,8 +1,10 @@
 import React from "react";
 
 const headerStyle = {
-  lineHeight: "15vh",
+  // add headerstyles here  in this format
+  // flexDirection: "row",
 };
+
 function Header(props) {
   return (
     <div style={headerStyle}>
