@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function LoginForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [warning, setWarning] = useState("");
 
   const handleUsernameChange = (evt) => {
     setUsername(evt.target.value);
@@ -14,6 +15,10 @@ function LoginForm(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    if (username === "" || password === "") {
+      setWarning("please enter credentials");
+      return;
+    }
     fetch(`http://localhost:3000/login`, {
       method: "POST",
       headers: {
@@ -46,6 +51,7 @@ function LoginForm(props) {
     <div>
       <div style={formDivStyle}>
         <h1>Log In</h1>
+        {warning !== "" ? <p>{warning}</p> : null}
         <form className="ui form" onSubmit={handleSubmit}>
           <div className="field">
             <label>Username</label>

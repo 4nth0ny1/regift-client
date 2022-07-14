@@ -67,7 +67,7 @@ function App() {
     switch (form) {
       case "login":
         return <LoginForm handleLogin={handleLogin} />;
-        break;
+      // break;
       default:
         return <SignInForm handleLogin={handleLogin} />;
     }
@@ -94,12 +94,14 @@ function App() {
         </p>
         {!loggedIn ? renderForm() : null}
 
-        <Link to="/">
-          <span className="pretty-link">
-            <br />
-            <button onClick={logOut}>Log Out</button>
-          </span>
-        </Link>
+        {loggedIn ? (
+          <Link to="/">
+            <span className="pretty-link">
+              <br />
+              <button onClick={logOut}>Log Out</button>
+            </span>
+          </Link>
+        ) : null}
       </Router>
     </div>
   );
