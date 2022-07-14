@@ -41,6 +41,7 @@ function LoginForm(props) {
       });
     setUsername("");
     setPassword("");
+    setWarning("");
   };
   const formDivStyle = {
     margin: "auto",
