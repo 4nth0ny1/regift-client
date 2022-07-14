@@ -60,6 +60,7 @@ function App() {
     setLoggedIn(false);
     // this.setState({ user: {}, loggedIn: false });
     localStorage.token = "";
+    window.location.href = "/";
   };
 
   const renderForm = () => {
@@ -76,25 +77,14 @@ function App() {
       <Router>
         <Switch>
           <Route path="/about" exact component={() => <About />} />
-          <Route path="/profile" exact component={() => <Profile />}></Route>
+          <Route
+            path="/profile"
+            exact
+            component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
+          ></Route>
         </Switch>
         <Header handleFormSwitch={handleFormSwitch} />
         {renderForm()}
-
-        {/* <Link to="/profile">
-          <button onClick={handleAuthClick} className="ui button">
-            Access Authorized Route
-          </button>
-        </Link> */}
-
-        {!loggedIn ? (
-          <Link to="/">
-            <span className="pretty-link">
-              <br />
-              <button onClick={logOut}>Log Out</button>
-            </span>
-          </Link>
-        ) : null}
       </Router>
     </div>
   );
