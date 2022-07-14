@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { BrowserRouter as Link } from "react-router-dom";
 
 function SignInForm(props) {
   const [username, setUsername] = useState("");
@@ -29,6 +30,9 @@ function SignInForm(props) {
       .then((data) => {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
+        if (data.user) {
+          window.location.href = "/profile";
+        }
       });
     setUsername("");
     setPassword("");

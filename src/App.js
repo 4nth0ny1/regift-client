@@ -16,6 +16,7 @@ import Profile from "./components/Profile.js";
 function App() {
   const [user, setUser] = useState({});
   const [form, setForm] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -56,6 +57,7 @@ function App() {
 
   const logOut = () => {
     setUser({});
+    setLoggedIn(false);
     // this.setState({ user: {}, loggedIn: false });
     localStorage.token = "";
   };
@@ -78,17 +80,21 @@ function App() {
         </Switch>
         <Header handleFormSwitch={handleFormSwitch} />
         {renderForm()}
-        {user && (
-          <Link to="/profile">
-            <button onClick={handleAuthClick} className="ui button">
-              Access Authorized Route
-            </button>
+
+        {/* <Link to="/profile">
+          <button onClick={handleAuthClick} className="ui button">
+            Access Authorized Route
+          </button>
+        </Link> */}
+
+        {!loggedIn ? (
+          <Link to="/">
+            <span className="pretty-link">
+              <br />
+              <button onClick={logOut}>Log Out</button>
+            </span>
           </Link>
-        )}
-        <span className="pretty-link">
-          <br />
-          <button onClick={logOut}>Log Out</button>
-        </span>
+        ) : null}
       </Router>
     </div>
   );
