@@ -1,10 +1,11 @@
 import React from "react";
-// import { BrowserRouter as Link } from "react-router-dom";
+import Gifts from "./Gifts";
 
 function Profile(props) {
   return (
     <div className="profile">
-      <h1>profile page</h1>
+      <h1>welcome to your profile page, {props.user.username}</h1>
+      <Gifts />
     </div>
   );
 }

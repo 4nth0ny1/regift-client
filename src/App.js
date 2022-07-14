@@ -9,7 +9,6 @@ import {
   Switch,
   Link,
   withRouter,
-  Redirect,
 } from "react-router-dom";
 import About from "./components/About.js";
 import Profile from "./components/Profile.js";
@@ -91,26 +90,25 @@ function App() {
           <Route
             path="/profile"
             exact
-            component={() => <Profile logOut={logOut} />}
-          ></Route>
+            component={() => <Profile logOut={logOut} user={user} />}
+          />
         </Switch>
 
-        <div style={formStyles}>
-          {!loggedIn ? <Header handleFormSwitch={handleFormSwitch} /> : null}
-          <p>
-            {loggedIn ? `Welcome ${user.username}` : "login to start regifting"}
-          </p>
-          {!loggedIn ? renderForm() : null}
-        </div>
+        <p>{loggedIn ? "logged in" : "logged out"}</p>
 
-        {loggedIn ? (
-          <Link to="/">
-            <span className="pretty-link">
-              <br />
-              <button onClick={logOut}>Log Out</button>
-            </span>
-          </Link>
+        {!loggedIn ? (
+          <div style={formStyles}>
+            <Header handleFormSwitch={handleFormSwitch} />
+            {renderForm()}
+          </div>
         ) : null}
+
+        <Link to="/">
+          <span className="pretty-link">
+            <br />
+            <button onClick={logOut}>Log Out</button>
+          </span>
+        </Link>
       </Router>
     </div>
   );

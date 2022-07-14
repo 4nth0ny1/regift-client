@@ -34,7 +34,6 @@ function LoginForm(props) {
       .then((data) => {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
-        props.setLoggedIn(true);
         if (data.user) {
           window.location.href = "/profile";
         }
@@ -43,11 +42,13 @@ function LoginForm(props) {
     setPassword("");
     setWarning("");
   };
+
   const formDivStyle = {
     margin: "auto",
     padding: "20px",
     width: "80%",
   };
+
   return (
     <div>
       <div style={formDivStyle}>
