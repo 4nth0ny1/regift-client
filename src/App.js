@@ -35,29 +35,30 @@ function App() {
 
   const handleLogin = (user) => {
     setUser(user);
-    setLoggedIn(true);
+    setLoggedIn(!loggedIn);
   };
 
   const handleFormSwitch = (input) => {
     setForm(input);
   };
 
-  const handleAuthClick = () => {
-    const token = localStorage.getItem("token");
-    fetch(`http://localhost:3000/user_is_authed`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data));
-  };
+  // const handleAuthClick = () => {
+  //   const token = localStorage.getItem("token");
+  //   fetch(`http://localhost:3000/user_is_authed`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((resp) => resp.json())
+  //     .then((data) => console.log(data));
+  // };
 
   console.log(user);
+  console.log(loggedIn);
 
   const logOut = () => {
     setUser({});
-    setLoggedIn(false);
+    setLoggedIn(!loggedIn);
     localStorage.token = "";
     window.location.href = "/";
   };
@@ -73,7 +74,7 @@ function App() {
   };
 
   const formStyles = {
-    width: "500px",
+    // width: "500px",
     boxShadow: "0px 0px 10px 0px grey",
     borderRadius: "10px",
     padding: "25px",
@@ -90,7 +91,7 @@ function App() {
           <Route
             path="/profile"
             exact
-            component={() => <Profile logOut={logOut} user={user} />}
+            component={() => <Profile user={user} />}
           />
         </Switch>
 

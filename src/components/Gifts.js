@@ -1,9 +1,9 @@
 function Gifts() {
   const giftArrayStyles = {
     border: "1px solid black",
-    width: "500px",
+    // width: "500px",
     padding: "25px",
-    margin: "0 auto",
+    // margin: "0 auto",
   };
   return (
     <div style={giftArrayStyles}>
