@@ -76,18 +76,21 @@ function App() {
       <Router>
         <Switch>
           <Route path="/about" exact component={() => <About />} />
-          {loggedIn ? (
-            <Route
-              path="/profile"
-              exact
-              component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
-            ></Route>
-          ) : (
-            <Redirect to="/" />
-          )}
+
+          <Route
+            path="/profile"
+            exact
+            component={() => <Profile loggedIn={loggedIn} logOut={logOut} />}
+          ></Route>
         </Switch>
         <Header handleFormSwitch={handleFormSwitch} />
         {renderForm()}
+        <Link to="/">
+          <span className="pretty-link">
+            <br />
+            <button onClick={logOut}>Log Out</button>
+          </span>
+        </Link>
       </Router>
     </div>
   );
