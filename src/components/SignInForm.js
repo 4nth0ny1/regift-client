@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-// import { BrowserRouter as Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SignInForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
+  const history = useHistory();
 
   const handleUsernameChange = (evt) => {
     setUsername(evt.target.value);
@@ -36,7 +37,7 @@ function SignInForm(props) {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
         if (data.user) {
-          window.location.href = "/profile";
+          history.push("/profile");
         }
       });
     setUsername("");

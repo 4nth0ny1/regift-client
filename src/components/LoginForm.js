@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function LoginForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
+  const history = useHistory();
 
   const handleUsernameChange = (evt) => {
     setUsername(evt.target.value);
@@ -35,7 +37,7 @@ function LoginForm(props) {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
         if (data.user) {
-          window.location.href = "/profile";
+          history.push("/profile");
         }
       });
     setUsername("");
