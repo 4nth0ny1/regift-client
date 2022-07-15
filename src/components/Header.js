@@ -1,14 +1,13 @@
 import React from "react";
 
 const headerStyle = {
-  background: "black",
-  height: "15vh",
-  // lineHeight: "15vh"
+  // add headerstyles here  in this format
+  // flexDirection: "row",
 };
+
 function Header(props) {
   return (
     <div style={headerStyle}>
-      <h1 style={{ color: "white" }}>JWT Auth Setup</h1>
       <button
         className="ui button"
         onClick={() => props.handleFormSwitch("signUp")}

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function SignInForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [warning, setWarning] = useState("");
+  const history = useHistory();
 
   const handleUsernameChange = (evt) => {
     setUsername(evt.target.value);
@@ -14,6 +17,10 @@ function SignInForm(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    if (username === "" || password === "") {
+      setWarning("please enter credentials");
+      return;
+    }
     fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
@@ -29,10 +36,15 @@ function SignInForm(props) {
       .then((data) => {
         localStorage.setItem("token", data.jwt);
         props.handleLogin(data.user);
+        if (data.user) {
+          history.push("/profile");
+        }
       });
     setUsername("");
     setPassword("");
+    setWarning("");
   };
+
   const formDivStyle = {
     margin: "auto",
     padding: "20px",
@@ -42,6 +54,7 @@ function SignInForm(props) {
   return (
     <div style={formDivStyle}>
       <h1>Sign Up</h1>
+      {warning !== "" ? <p>{warning}</p> : null}
       <form className="ui form" onSubmit={handleSubmit}>
         <div className="field">
           <label>Username</label>
