@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import About from "./components/About.js";
 import Profile from "./components/Profile.js";
+import styled from "styled-components";
 
 function App() {
   const [user, setUser] = useState({});
@@ -67,19 +68,18 @@ function App() {
     switch (form) {
       case "login":
         return <LoginForm handleLogin={handleLogin} />;
-      // break;
       default:
         return <SignInForm handleLogin={handleLogin} />;
     }
   };
 
-  const formStyles = {
-    // width: "500px",
-    boxShadow: "0px 0px 10px 0px grey",
-    borderRadius: "10px",
-    padding: "25px",
-    margin: "30px auto",
-  };
+  const Wrapper = styled.section`
+    ${"" /* width: 500px; */}
+    box-shadow: 0px 0px 10px 0px grey;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px auto;
+  `;
 
   return (
     <div className="App">
@@ -95,13 +95,11 @@ function App() {
           />
         </Switch>
 
-        <p>{loggedIn ? "logged in" : "logged out"}</p>
-
         {!loggedIn ? (
-          <div style={formStyles}>
+          <Wrapper>
             <Header handleFormSwitch={handleFormSwitch} />
             {renderForm()}
-          </div>
+          </Wrapper>
         ) : null}
 
         <Link to="/">
