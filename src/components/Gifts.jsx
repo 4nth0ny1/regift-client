@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Wrapper } from './Gifts-Style';
+import { GiftCards, Wrapper } from './Gifts-Style';
 
 const giftArrayStyles = {
   border: "1px solid black",
@@ -30,7 +30,7 @@ giftData()
     <div style={giftArrayStyles}>
       <h1>gifts component</h1>
       <Wrapper>{gifts.map(gift =>(
-        <div key={gift.id}>{gift.name}</div>
+        <GiftCards key={gift.id}>{gift.name}</GiftCards>
       ))}</Wrapper>
     </div>
   );
