@@ -24,7 +24,9 @@ giftData()
   return (
     <div style={giftArrayStyles}>
       <h1>gifts component</h1>
-      <div>{console.log(gifts)}</div>
+      <div>{gifts.map(gift =>(
+        <div key={gift.id}>{gift.name}</div>
+      ))}</div>
     </div>
   );
 }
