@@ -14,9 +14,13 @@ function Gifts() {
 
   useEffect(()=>{
     const giftData = async ()=> {
+      try{ 
         const response = await fetch(GIFT_API);
         const giftList = await response.json()
         setGifts(giftList)
+      } catch(err){
+        console.error(err)
+      }
     }
 giftData()
   }, [])
