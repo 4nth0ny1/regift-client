@@ -6,13 +6,25 @@ const giftArrayStyles = {
   padding: "25px",
   margin: "30px",
 };
+
+const GIFT_API = "http://localhost:3000/gifts"
+
 function Gifts() {
   const [gifts, setGifts] = useState([])
+
+  useEffect(()=>{
+    const giftData = async ()=> {
+        const response = await fetch(GIFT_API);
+        const giftList = await response.json()
+        setGifts(giftList)
+    }
+giftData()
+  }, [])
 
   return (
     <div style={giftArrayStyles}>
       <h1>gifts component</h1>
-      <p>put your array of gift objects here</p>
+      <div>{console.log(gifts)}</div>
     </div>
   );
 }
